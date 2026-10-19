@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A-Frame - Image Textures & Modifications</title>
+    <script src="js/aframe-master-v1.3.0.min.js"></script>
+</head>
+
+<body>
+<a-scene antialias="true">
+    
+    <a-assets>
+        <img id="sky" src="images/stars.jpg" crossorigin="anonymous" />
+        <img id="grass" src="images/grass.jpg" crossorigin="anonymous" />
+        <img id="crate" src="images/crate.jpg" crossorigin="anonymous" />
+        <img id="earth" src="images/earth-sphere.jpg" crossorigin="anonymous" />
+        <img id="hexagons" src="images/hexagons.png" crossorigin="anonymous" />
+    </a-assets>
+
+    <!-- 1. Додано джерела світла -->
+    <a-light type="ambient" color="#666666"></a-light>
+    <a-light type="directional" position="-2 4 1" intensity="0.8" castShadow="true"></a-light>
+        
+    <a-sky 
+        color="#FFFFFF"
+        material="src: #sky">
+    </a-sky>
+
+    <!-- 2. Оновлено шар трави (непрозорий та детальніший) -->
+    <a-plane
+        width="100" height="100"
+        position="0 0 0" 
+        rotation="-90 0 0" 
+        color="#888888" 
+        material="src: #grass; repeat: 20 20; transparent: false; opacity: 1"
+        shadow="cast: false; receive: true">
+    </a-plane>
+    
+    <!-- 3. Змінено розмір, позицію та обертання куба -->
+    <a-box
+        width="1.5" height="1.5" depth="1.5"
+        position="-2 0.75 -3"
+        rotation="15 60 10"  
+        color="#FFFFFF"
+        material="src: #crate"
+        shadow="cast: true; receive: true">
+    </a-box>
+    
+    <!-- 4. Додано анімацію обертання сфери (Землі) -->
+    <a-sphere
+        radius="1.25"
+        position="0 1.25 -5"
+        material="src: #earth;"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear"
+        shadow="cast: true; receive: true">
+    </a-sphere>
+    
+    <a-cylinder
+        radius="0.5" height="1.5"
+        position="1 0.75 -3"
+        color="#8888BB"
+        material="src: #hexagons; repeat: 4 2;"
+        shadow="cast: true; receive: true">
+    </a-cylinder>
+
+    <!-- 5. Додано новий геометричний об'єкт -->
+    <a-torus
+        radius="0.7" radius-tubular="0.1"
+        position="2.5 1 -4"
+        rotation="45 30 0"
+        color="#FFD700"
+        shadow="cast: true; receive: true">
+    </a-torus>
+    
+</a-scene>
+</body>
+</html>
